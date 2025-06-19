@@ -23,7 +23,6 @@ function SwapContent() {
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const IP_TOKEN_ADDRESS = "0x";
   const WIP_TOKEN_ADDRESS = "0x1514000000000000000000000000000000000000";
 
   const { data: ethBalance } = useBalance({ address });

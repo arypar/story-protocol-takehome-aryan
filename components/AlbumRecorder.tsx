@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Plus, Trash2, Upload, Music, Image, Check, AlertCircle, Loader2 } from 'lucide-react';
+import { Plus, Upload, Music, Image, Check, AlertCircle, Loader2 } from 'lucide-react';
 import { SongRecorder } from './SongRecorder';
 import { StoryClient, StoryConfig } from '@story-protocol/core-sdk';
 import { custom, keccak256, toBytes } from 'viem';

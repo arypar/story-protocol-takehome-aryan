@@ -8,7 +8,7 @@ import { custom, parseEther } from "viem";
 import { useAccount, useWalletClient } from "wagmi";
 import WalletProvider from "../../../components/wallet-provider";
 import NavigationHeader from "@/components/NavigationHeader";
-import { Loader2, ArrowLeft, Play, Pause, Music, ExternalLink, FileText, X } from "lucide-react";
+import { Loader2, ArrowLeft, Play, Pause, Music, ExternalLink, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -57,14 +57,12 @@ function NFTViewContent() {
   const params = useParams();
   const tokenId = params.tokenId as string;
   
-  if (!tokenId) {
-    return <div>Invalid token ID</div>;
-  }
+  // Always call hooks before any early returns
   const { address, isConnected } = useAccount();
   const { data: walletClient } = useWalletClient();
   const [metadata, setMetadata] = useState<NFTMetadata | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const [audioState, setAudioState] = useState<AudioState>({
     currentTrack: null,
     isPlaying: false,
@@ -74,7 +72,7 @@ function NFTViewContent() {
   const [showLicenseDialog, setShowLicenseDialog] = useState(false);
   const [mintingFee, setMintingFee] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
-  const [ipId, setIpId] = useState<string | null>(null);
+  const [, setIpId] = useState<string | null>(null);
   
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -82,19 +80,24 @@ function NFTViewContent() {
     address: CONTRACT_ADDRESS as `0x${string}`,
     abi: CONTRACT_ABI,
     functionName: 'tokenURI',
-    args: [BigInt(tokenId)],
+    args: tokenId ? [BigInt(tokenId)] : undefined,
+    query: {
+      enabled: !!tokenId && !isNaN(parseInt(tokenId)),
+    },
   });
 
   const { data: owner } = useContractRead({
     address: CONTRACT_ADDRESS as `0x${string}`,
     abi: CONTRACT_ABI,
     functionName: 'ownerOf',
-    args: [BigInt(tokenId)],
+    args: tokenId ? [BigInt(tokenId)] : undefined,
+    query: {
+      enabled: !!tokenId && !isNaN(parseInt(tokenId)),
+    },
   });
 
   const isOwner = address && owner && String(owner).toLowerCase() === address.toLowerCase();
 
-  
   useEffect(() => {
     if (!tokenURI || tokenURILoading) return;
 
@@ -119,6 +122,11 @@ function NFTViewContent() {
 
     fetchMetadata();
   }, [tokenURI, tokenURILoading]);
+  
+  // Early return check after all hooks
+  if (!tokenId || isNaN(parseInt(tokenId))) {
+    return <div>Invalid token ID</div>;
+  }
 
 
   const playTrack = (trackIndex: number) => {
