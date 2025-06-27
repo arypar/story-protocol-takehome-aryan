@@ -148,8 +148,8 @@ export default function AlbumRecorder() {
         ipMetadata: {
           ipMetadataURI: "",
           ipMetadataHash: "0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563",
-          nftMetadataURI: `https://gateway.pinata.cloud/ipfs/${albumMetadataHash}`,
-          nftMetadataHash: keccak256(toBytes(`https://gateway.pinata.cloud/ipfs/${albumMetadataHash}`)),
+          nftMetadataURI: `https://yellow-witty-orca-603.mypinata.cloud/ipfs/${albumMetadataHash}`,
+          nftMetadataHash: keccak256(toBytes(`https://yellow-witty-orca-603.mypinata.cloud/ipfs/${albumMetadataHash}`)),
         },        
       });
 
@@ -431,7 +431,7 @@ export default function AlbumRecorder() {
               <div>
                 <p className="text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors">View Album:</p>
                 <a
-                  href={`https://gateway.pinata.cloud/ipfs/${albumIpfsHash}`}
+                  href={`https://yellow-witty-orca-603.mypinata.cloud/ipfs/${albumIpfsHash}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline text-sm transition-colors"

@@ -274,7 +274,7 @@ function InventoryContent() {
                       </div>
                     ) : nft.metadata?.coverImage ? (
                       <img
-                        src={`https://gateway.pinata.cloud/ipfs/${nft.metadata.coverImage}`}
+                        src={`https://yellow-witty-orca-603.mypinata.cloud/ipfs/${nft.metadata.coverImage}`}
                         alt={nft.metadata.name || `NFT #${nft.tokenId}`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                       />

@@ -133,7 +133,7 @@ function NFTViewContent() {
     if (!metadata?.songs?.[trackIndex] || !audioRef.current) return;
 
     const song = metadata.songs[trackIndex];
-    const audioUrl = `https://gateway.pinata.cloud/ipfs/${song.ipfsHash}`;
+    const audioUrl = `https://yellow-witty-orca-603.mypinata.cloud/ipfs/${song.ipfsHash}`;
     
     if (audioState.currentTrack === trackIndex && audioState.isPlaying) {
 
@@ -294,7 +294,7 @@ function NFTViewContent() {
                 <div className="w-60 h-60 bg-gray-100 dark:bg-gray-800 shadow-2xl border border-gray-300 dark:border-gray-700 overflow-hidden transition-all">
                   {metadata.coverImage ? (
                     <img 
-                      src={`https://gateway.pinata.cloud/ipfs/${metadata.coverImage}`} 
+                      src={`https://yellow-witty-orca-603.mypinata.cloud/ipfs/${metadata.coverImage}`} 
                       alt={metadata.name || `NFT #${tokenId}`}
                       className="w-full h-full object-cover"
                     />
@@ -435,7 +435,7 @@ function NFTViewContent() {
                           className="opacity-0 group-hover:opacity-100 transition-opacity bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 border-gray-300 dark:border-gray-600 text-black dark:text-white"
                           onClick={(e) => {
                             e.stopPropagation();
-                            window.open(`https://gateway.pinata.cloud/ipfs/${song.ipfsHash}`, '_blank');
+                            window.open(`https://yellow-witty-orca-603.mypinata.cloud/ipfs/${song.ipfsHash}`, '_blank');
                           }}
                         >
                           <ExternalLink className="w-3 h-3" />
